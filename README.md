@@ -22,5 +22,5 @@ A clone of chatGPT
 
 * Frontend: Vue
 * Backend: MongoDB and Firebase
-* CSS: Taliwind
+* CSS: Tailwind
 * REST: OpenAI
