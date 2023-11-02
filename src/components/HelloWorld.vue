@@ -6,7 +6,7 @@ defineProps<{ msg: string }>()
 
 <template>
   <h1>{{ msg }}</h1>
-  <h2>Zeeshan</h2>
+  <h2>Zeeshan Chaudhry</h2>
 </template>
 
 <style scoped>
