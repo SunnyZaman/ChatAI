@@ -1,5 +1,5 @@
 <script setup lang="ts">
-// import HelloWorld from './components/HelloWorld.vue'
+import HelloWorld from './components/HelloWorld.vue'
 </script>
 
 <template>
@@ -12,7 +12,10 @@
       <p class="text-gray-500">You have a new message!</p>
     </div>
   </div>
-  <!-- <HelloWorld msg="Vite + Vue" /> -->
+  <div>
+   <h1>Hello World</h1>
+     </div>
+  <HelloWorld msg="Vite + Vue" />
 </template>
 
 <style scoped>
