@@ -1,9 +1,15 @@
 <script setup lang="ts">
-import HelloWorld from './components/HelloWorld.vue'
+// import HelloWorld from './components/HelloWorld.vue'
 </script>
 
 <template>
-  <div class="p-6 max-w-sm mx-auto bg-white rounded-xl shadow-md flex items-center space-x-4">
+  <nav>
+    <router-link to="/">Home</router-link>
+    <router-link to="/register">Register</router-link>
+    <router-link to="/sign-in">Login</router-link>
+  </nav>
+  <router-view/>
+  <!-- <div class="p-6 max-w-sm mx-auto bg-white rounded-xl shadow-md flex items-center space-x-4">
     <div class="flex-shrink-0">
       <img class="h-12 w-12" src="/img/logo.svg" alt="ChatAI Logo">
     </div>
@@ -15,7 +21,7 @@ import HelloWorld from './components/HelloWorld.vue'
   <div>
    <h1>Hello World</h1>
      </div>
-  <HelloWorld msg="Vite + Vue" />
+  <HelloWorld msg="Vite + Vue" /> -->
 </template>
 
 <style scoped>
