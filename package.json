@@ -9,6 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@heroicons/vue": "^2.0.18",
     "firebase": "^10.5.2",
     "vee-validate": "^4.11.8",
     "vue": "^3.3.4",

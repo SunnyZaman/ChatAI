@@ -1,7 +1,9 @@
 <script setup lang="ts">
-import DynamicForm from "../components/DynamicForm.vue"
+import { getAuth, createUserWithEmailAndPassword, AuthError } from "firebase/auth";
+import DynamicForm from "../components/DynamicForm.vue";
 import * as Yup from 'yup';
-import { ref } from 'vue'
+import { ref } from 'vue';
+import router from "../router";
 
 const title = ref('Sign up');
 // const message = ref("Don't have an account?");
@@ -41,12 +43,20 @@ const validation = Yup.object().shape({
     .required('This is a required field')
     .oneOf([Yup.ref('password')], 'Passwords do not match'),
 });
-const onSubmit = (valueFromChild: any) => {
-  console.log('From the child:', valueFromChild);
+const onSubmit = (data: any) => {
+  console.log('From the child:', data);
+  createUserWithEmailAndPassword(getAuth(), data.email, data.password)
+  .then(()=>{
+    console.log("Successfully registered!");
+    router.push("/");
+  })
+  .catch((error: AuthError)=>{
+    console.error(error.code);
+  })
 }
 </script>
 <template>
-  <DynamicForm :title="title" :message="message" :schema="formSchema" :validation="validation" @send-message="onSubmit" />
+  <DynamicForm :title="title" :message="message" :schema="formSchema" :validation="validation" @handle-form="onSubmit" />
 </template>
 
 <style scoped></style>
