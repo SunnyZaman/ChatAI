@@ -3,13 +3,14 @@ import { getAuth, createUserWithEmailAndPassword, AuthError } from "firebase/aut
 import DynamicForm from "../components/DynamicForm.vue";
 import * as Yup from 'yup';
 import { ref } from 'vue';
-import router from "../router";
+import router from "../router/index.js";
 
 const title = ref('Sign up');
 // const message = ref("Don't have an account?");
 const message = ref({
   description: `Already have an account? `,
-  action: 'Sign in'
+  action: 'Sign in',
+  link: 'sign-in'
 })
 const formSchema = ref({
   fields: [
@@ -46,13 +47,13 @@ const validation = Yup.object().shape({
 const onSubmit = (data: any) => {
   console.log('From the child:', data);
   createUserWithEmailAndPassword(getAuth(), data.email, data.password)
-  .then(()=>{
-    console.log("Successfully registered!");
-    router.push("/");
-  })
-  .catch((error: AuthError)=>{
-    console.error(error.code);
-  })
+    .then(() => {
+      console.log("Successfully registered!");
+      router.push("/");
+    })
+    .catch((error: AuthError) => {
+      console.error(error.code);
+    })
 }
 </script>
 <template>

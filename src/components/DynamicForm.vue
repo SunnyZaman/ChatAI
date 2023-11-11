@@ -15,6 +15,7 @@ interface IFormProps {
   message: {
     description: string;
     action: string;
+    link: string;
   };
   schema: {
     fields: IFieldProps[];
@@ -32,7 +33,7 @@ const submit = (data: any) => {
 <template>
   <div class="min-h-screen bg-gray-100 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
     <div class="sm:mx-auto sm:w-full sm:max-w-md">
-      <h1 class="mt-6 text-center text-3xl font-extrabold text-gray-900">
+    <h1 class="mt-6 text-center text-3xl font-extrabold text-gray-900">
         {{ title }}
       </h1>
     </div>
@@ -61,8 +62,10 @@ const submit = (data: any) => {
         </Form>
         <GoogleAuth />
         <div class="mt-12 text-sm font-display font-semibold text-gray-700 text-center">
-          {{ message.description }}<a class="cursor-pointer text-indigo-600 hover:text-indigo-800">{{ message.action
-          }}</a>
+          {{ message.description }} <router-link :to="message.link"
+            class="cursor-pointer text-indigo-600 hover:text-indigo-800">{{ message.action }}</router-link>
+          <!-- <a class="cursor-pointer text-indigo-600 hover:text-indigo-800">{{ message.action
+              }}</a> -->
         </div>
       </div>
     </div>

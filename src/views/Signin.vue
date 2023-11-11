@@ -8,7 +8,8 @@ const router = useRouter()
 const title = ref('Sign in');
 const message = ref({
   description: `Don't have an account? `,
-  action: 'Sign up'
+  action: 'Sign up',
+  link: 'sign-up'
 })
 const formSchema = ref({
   fields: [

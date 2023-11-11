@@ -1,13 +1,19 @@
 <script setup lang="ts">
 import { PlusIcon } from "@heroicons/vue/24/solid";
 import { ArrowLeftOnRectangleIcon } from "@heroicons/vue/24/solid";
-import { getAuth } from "firebase/auth";
+import { getAuth, signOut } from "firebase/auth";
+import router from "../router";
 
 // import { ref } from 'vue';
 
 const auth = getAuth();
 console.log("Aut", auth);
 // const currentUser = ref(auth.currentUser);
+const handleSignOut =()=>{
+    signOut(auth).then(()=>{
+        router.push("/sign-in");
+    })
+}
 </script>
 
 <template>
@@ -20,7 +26,7 @@ console.log("Aut", auth);
                     <p>New Chat</p>
                 </div>
             </div>
-            <div class="border-white border chat-row h-[calc(100vh-100px)]">
+            <div class="border-white border chat-row h-[calc(100vh-100px)] overflow-y-auto">
 
             </div>
         </div>
@@ -28,7 +34,8 @@ console.log("Aut", auth);
             <div class="absolute w-48 mt-2 right-0 bg-white rounded-md shadow-xl z-20">
                 <p>Hello</p>
             </div> -->
-        <div class="border-gray-700 border chat-row">
+        <div class="border-gray-700 border chat-row"
+        @click="handleSignOut">
             <ArrowLeftOnRectangleIcon class="h-4 w-4" />
             <p>Sign out</p>
         </div>
