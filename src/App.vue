@@ -3,11 +3,11 @@
 </script>
 
 <template>
-  <nav>
+  <!-- <nav>
     <router-link to="/">Home</router-link>
     <router-link to="/sign-up">Register</router-link>
     <router-link to="/sign-in">Login</router-link>
-  </nav>
+  </nav> -->
   <router-view/>
   <!-- <div class="p-6 max-w-sm mx-auto bg-white rounded-xl shadow-md flex items-center space-x-4">
     <div class="flex-shrink-0">
