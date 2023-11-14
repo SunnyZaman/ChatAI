@@ -26,7 +26,7 @@ const handleSignOut =()=>{
                     <p>New Chat</p>
                 </div>
             </div>
-            <div class="border-white border chat-row h-[calc(100vh-100px)] overflow-y-auto">
+            <div class="border-white border chat-row h-[calc(100vh-140px)] overflow-y-auto mt-4">
 
             </div>
         </div>
@@ -34,7 +34,7 @@ const handleSignOut =()=>{
             <div class="absolute w-48 mt-2 right-0 bg-white rounded-md shadow-xl z-20">
                 <p>Hello</p>
             </div> -->
-        <div class="border-gray-700 border chat-row"
+        <div class="border-gray-700 border chat-row mb-2"
         @click="handleSignOut">
             <ArrowLeftOnRectangleIcon class="h-4 w-4" />
             <p>Sign out</p>
