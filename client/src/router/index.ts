@@ -5,7 +5,7 @@ const router = createRouter({
     history: createWebHistory(),
     routes: [
         {
-            path: "/", component: () => import("../views/Home.vue"),
+            path: "/:chatId?", component: () => import("../views/Home.vue"),
             meta: {
                 requiresAuth: true
             }
@@ -21,6 +21,10 @@ const router = createRouter({
             meta: {
                 disableIfLoggedIn: true
             }
+        },
+        {
+            path: "/:catchAll(.*)", component: () => import("../views/404.vue")
+            
         }
     ]
 });

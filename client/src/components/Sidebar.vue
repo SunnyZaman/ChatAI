@@ -21,10 +21,10 @@ const handleSignOut =()=>{
         <div class="flex-1">
         <div>
             <!-- New Chat -->
-            <div class="border-gray-700 border chat-row">
+            <router-link to="/" class="border-gray-700 border chat-row">
                     <PlusIcon class="h-4 w-4" />
                     <p>New Chat</p>
-                </div>
+                </router-link>
             </div>
             <div class="border-white border chat-row h-[calc(100vh-140px)] overflow-y-auto mt-4">
 
