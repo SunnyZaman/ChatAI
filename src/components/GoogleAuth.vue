@@ -1,17 +1,19 @@
 <script setup lang="ts">
 import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import router from "../router";
+import { toast, type ToastOptions } from 'vue3-toastify';
 
 const signInWithGoogle = () => {
   const provider = new GoogleAuthProvider();
   signInWithPopup(getAuth(), provider)
-    .then((result) => {
-      console.log("Google user: ", result.user);
+    .then(() => {
       router.push("/");
     })
     .catch((error) => {
       console.error(error);
-
+      toast.error(error.message, {
+        position: toast.POSITION.TOP_CENTER,
+      } as ToastOptions);
     })
 }
 </script>
@@ -39,5 +41,3 @@ const signInWithGoogle = () => {
     </div>
   </div>
 </template>
-
-<style scoped></style>

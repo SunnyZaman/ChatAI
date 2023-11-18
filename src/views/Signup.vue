@@ -4,9 +4,9 @@ import DynamicForm from "../components/DynamicForm.vue";
 import * as Yup from 'yup';
 import { ref } from 'vue';
 import router from "../router/index.js";
+import { toast, type ToastOptions } from 'vue3-toastify';
 
 const title = ref('Sign up');
-// const message = ref("Don't have an account?");
 const message = ref({
   description: `Already have an account? `,
   action: 'Sign in',
@@ -45,14 +45,15 @@ const validation = Yup.object().shape({
     .oneOf([Yup.ref('password')], 'Passwords do not match'),
 });
 const onSubmit = (data: any) => {
-  console.log('From the child:', data);
   createUserWithEmailAndPassword(getAuth(), data.email, data.password)
     .then(() => {
       console.log("Successfully registered!");
       router.push("/");
     })
     .catch((error: AuthError) => {
-      console.error(error.code);
+      toast.error(error.message, {
+        position: toast.POSITION.TOP_CENTER,
+      } as ToastOptions);
     })
 }
 </script>

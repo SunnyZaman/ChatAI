@@ -64,8 +64,6 @@ const submit = (data: any) => {
         <div class="mt-12 text-sm font-display font-semibold text-gray-700 text-center">
           {{ message.description }} <router-link :to="message.link"
             class="cursor-pointer text-indigo-600 hover:text-indigo-800">{{ message.action }}</router-link>
-          <!-- <a class="cursor-pointer text-indigo-600 hover:text-indigo-800">{{ message.action
-              }}</a> -->
         </div>
       </div>
     </div>
