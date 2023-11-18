@@ -25,7 +25,7 @@ watch(() => props.snapshot,
 const setChats = (snap: any) => {
     let arr: any = [];
     data.value = snap;
-    data.value.forEach((doc: any) => { //may need to change this to just props.snapshot
+    data.value.forEach((doc: any) => {
         arr.push({
             id: doc.id,
             title: doc.data().title
@@ -51,7 +51,8 @@ const handleSignOut = () => {
                 <router-link v-for="{ id, title } in chats" :key="id" :to="`/${id}`" class="chat-row justify-center"
                     :class="{ 'bg-gray-700/50': route.params.chatId == id }">
                     <ChatBubbleLeftIcon class="h-5 w-5" />
-                    <p class="flex-1 truncate">{{ title }}</p>
+                    <p class="flex-1 truncate">{{ title.charAt(0).toUpperCase()
+                        + title.slice(1) }}</p>
                 </router-link>
             </div>
         </div>
