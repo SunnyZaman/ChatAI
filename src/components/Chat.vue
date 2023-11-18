@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { PaperAirplaneIcon } from "@heroicons/vue/24/solid";
 import { onMounted, onUnmounted, reactive, ref, watch } from "vue";
-import { getDocs, collection, addDoc, serverTimestamp, orderBy, query } from "firebase/firestore"
+import { collection, addDoc, serverTimestamp, orderBy, query } from "firebase/firestore"
 import { getDatabase } from "../firebase";
 import { getAuth } from "firebase/auth";
 import { useRoute } from 'vue-router';
@@ -27,13 +27,16 @@ const messageSchema = yup.object({
 onMounted(() => {
     checkChat(route.params.chatId);
     getChat(route.params.chatId);
+    bottom.value?.scrollIntoView({behavior:'smooth'})
 })
 watch(() => route.params.chatId,
     newId => {
         checkChat(newId);
         getChat(newId)
     });
-
+    watch(bottom,() => {
+        bottom.value?.scrollIntoView({behavior:'smooth'})
+    });
     watch(msgs,() => {
         bottom.value?.scrollIntoView({behavior:'smooth'})
     },{

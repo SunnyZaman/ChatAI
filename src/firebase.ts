@@ -2,11 +2,10 @@ import { FirebaseApp, getApp, getApps, initializeApp, } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
 import { ref, onUnmounted } from 'vue';
 import { collection } from "firebase/firestore"
-import { query, orderBy, limit } from "firebase/firestore";  
-
-let app: FirebaseApp;
+import { query, orderBy } from "firebase/firestore";
 import { onSnapshot } from "firebase/firestore";
 
+let app: FirebaseApp;
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -27,68 +26,16 @@ export function getDatabase() {
   return db;
 }
 
-
-
-export  function useChat() {
+export function useChat() {
   const firestore = getDatabase()
-const chats:any = ref([]);
-const q = query(collection(firestore, "chats"), orderBy("createdAt","desc"));
-const unsubscribe = onSnapshot(q, (querySnapshot) => {
-  chats.value = [];
-  querySnapshot.forEach((doc) => {
+  const chats: any = ref([]);
+  const q = query(collection(firestore, "chats"), orderBy("createdAt", "desc"));
+  const unsubscribe = onSnapshot(q, (querySnapshot) => {
+    chats.value = [];
+    querySnapshot.forEach((doc) => {
       chats.value.push({ id: doc.id, ...doc.data() });
+    });
   });
-  console.log("Current cities in CA: ", chats.value);
-});
-onUnmounted(unsubscribe)
-console.log("Whhatt ius gpig on l ", chats.value);
-  const createChat = text => {
-    // if (!isLogin.value) return
-    // const { photoURL, uid, displayName } = user.value
-    // messagesCollection.add({
-    //   userName: displayName,
-    //   userId: uid,
-    //   userPhotoURL: photoURL,
-    //   text: filter.clean(text),
-    //   createdAt: firebase.firestore.FieldValue.serverTimestamp()
-    // })
-  }
-
-
-  return { chats, createChat }
-}
-
-export  function useMessage(chatId) {
- 
-  const firestore = getDatabase()
-// const messagesCollection = firestore.collection('messages')
-// const messagesQuery = await (await (getDocs(query(collection(firestore, "chats"), orderBy("createdAt","desc"))))).forEach((doc:any) => ({ id: doc.id, ...doc.data() }));
-const messages:any = ref([]);
-if(chatId){
-const q = query(collection(firestore, "chats", chatId, "messages"), orderBy("createdAt","desc"));
-const unsubscribe = onSnapshot(q, (querySnapshot) => {
-  messages.value = [];
-  querySnapshot.forEach((doc) => {
-    messages.value.push({ id: doc.id, ...doc.data() });
-  });
-  console.log("The messagesssssssssssssssss: ", messages.value);
-});
-onUnmounted(unsubscribe)
-}
-console.log("Whhatt ius gpig on l ", messages.value);
-  const sendMessage = text => {
-    // if (!isLogin.value) return
-    // const { photoURL, uid, displayName } = user.value
-    // messagesCollection.add({
-    //   userName: displayName,
-    //   userId: uid,
-    //   userPhotoURL: photoURL,
-    //   text: filter.clean(text),
-    //   createdAt: firebase.firestore.FieldValue.serverTimestamp()
-    // })
-  }
-
-
-  return { messages, sendMessage }
-
+  onUnmounted(unsubscribe);
+  return { chats };
 }
